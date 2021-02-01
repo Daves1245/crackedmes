@@ -1,0 +1,26 @@
+thread_timer:
+    increments GLOBL_COUNTER_00013010 if the value at
+    *(int *)(in_GS_OFFSET + 0x14) did not change between
+    the creation of thread_one, and the successful termination
+    of three other threads. Updates the number of tv_sec and tv_nsec
+    passed since start.
+
+thread_one:
+    immediately increments threads_finished and returns
+    ~param_1 % 0xfff == 0x7b4
+    a list of numbers that will satisfy the above condition can be
+    found at the file ~/crackmes/thread_two_valid_parms
+
+thread_two:
+    creates a number from its parameter using digit manipulation.
+    then it sleeps until GLOBL_COUNTER_00013010 is at least 100
+    but at most 1000. Increments threads_finished and returns
+    (calculated number) % 0x3e9 == 0xaa. Although it's likely
+    irrelevant, a list of numbers that satisfy this condition can
+    be found at the file ~/crackmes/thread_three_valid_params
+
+the winning condition:
+    the condition "(void *)(unsigned int)(t1_ret == t2_ret) == t3_ret"
+    must be true for the flag to be reached. so either
+    t1_ret is equal to t2_ret and t3_ret is 1, or t1_ret and t2_ret differ
+    and t3_ret is 0.
