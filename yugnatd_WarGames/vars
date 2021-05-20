@@ -1,0 +1,12 @@
+var_11h: "gssw#tpc"
+var_9h: 'z'
+var_24h: 0
+key: 0
+
+while (local_20h <= 8) {
+    r = rand()
+    edx = ((r * 0x66666667) >> 0x21) - (r >> 0x1f)
+    eax = 3 * edx
+    ecx = r - 2 * edx
+    edx = ecx
+}
